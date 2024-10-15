@@ -1,0 +1,17 @@
+provider "aws" {
+  region     = "eu-central-1"  # Frankfurt-regio
+}
+
+# Voorbeeld resource (bijv. EC2 instance)
+resource "aws_instance" "example" {
+  ami           = "ami-07d2928e2d8e5380a"  # AMI-ID voor jouw regio
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "ExampleInstance"
+  }
+}
+
+output "instance_ip" {
+  value = aws_instance.example.public_ip
+}
